@@ -22,5 +22,6 @@ module.exports = {
   },
   devServer: {
     contentBase: __dirname + '/public',
+    historyApiFallback: true
   },
 };

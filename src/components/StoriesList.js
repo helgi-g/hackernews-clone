@@ -6,15 +6,17 @@ import { loadStories } from '../AC'
 class StoriesList extends Component {
 
   componentWillMount() {
-    const { type } = this.props
-    this.props.loadStories(type)
+    this.props.loadStories(this.props.type)
   }
 
   render() {
+    console.log(this.props.type);
+    
     console.log(this.props.items);
     
     return (
       <div>
+        {this.props.type}
       </div>
     )
   }
