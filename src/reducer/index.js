@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
-import items from './items'
+import stories from './stories'
 
 export default combineReducers({
   router,
-  items
+  stories
 })
