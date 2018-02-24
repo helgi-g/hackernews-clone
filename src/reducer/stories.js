@@ -10,6 +10,7 @@ const defaultState = new StoriesRecord()
 
 export default (state = defaultState, action) => {
   const { type, payload } = action
+  console.log(payload)  
   switch (type) {
     case 'LOAD_STORIES_START':
       return state.set('loading', true)

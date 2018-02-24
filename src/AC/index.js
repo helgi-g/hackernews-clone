@@ -10,7 +10,13 @@ export function loadStories(type, page) {
         return res.json()
       })
       .then(res => {
-        const arrID = res.slice((+page - 1) * 20, +page * 20)
+        console.log(res.length)
+        const size = 20
+        const remainder = (res.length > page * size) ? size : (res.length % size)
+        console.log(remainder)
+        const endpoint = remainder == size ? +page * size : ((+page - 1) * size) + remainder
+        console.log(endpoint)
+        const arrID = res.slice((+page - 1) * size, endpoint)
         let stories = []
         let i = 0
         arrID.forEach(id => {
@@ -22,10 +28,15 @@ export function loadStories(type, page) {
             })
             .then(stories => {
               i++
-              if (i == 20) {
+              if (i == remainder & stories.length >= ((+page - 1) * size) + remainder) {
                 dispatch({
                   type: 'LOAD_STORIES_SUCCESS',
                   payload: stories
+                })
+              } else {
+                dispatch({
+                  type: 'LOAD_STORIES_SUCCESS',
+                  payload: []
                 })
               }
             })
