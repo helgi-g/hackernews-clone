@@ -1,24 +1,43 @@
-import { Record } from 'immutable'
+import { List, Map, Record } from 'immutable'
 
-const StoriesRecord = Record({
-  loading: false,
-  loaded: false,
-  items: []
+function arrToMap(arr) {
+  return arr.reduce((acc, item) => {
+    console.log('acc = ' + acc)
+    return acc.set(item, '')
+  }, new Map({}))
+}
+/*const StoryRecord = Record({
+  id: null,
+  deleted: false,	
+  type:	null,
+  by: null,
+  time: null,
+  text: null,
+  dead:	false,
+  parent: null,
+  poll: null,
+  kids:	[],
+  url: null,
+  score: null,
+  title: null,
+  parts: null,
+  descendants: null
 })
-
-const defaultState = new StoriesRecord()
-
+const StoriesMap = arrToMap([], StoryRecord)*/
+const defaultState = arrToMap([])
+console.log('defaultState = ' + defaultState)
 export default (state = defaultState, action) => {
   const { type, payload } = action
-  console.log(payload)  
   switch (type) {
-    case 'LOAD_STORIES_START':
-      return state.set('loading', true)
-    case 'LOAD_STORIES_SUCCESS': 
+    case 'LOAD_STORY_START':
+      state = arrToMap(payload)  
+      console.log('Start state = ' + state)
       return state
-        .set('loading', false)
-        .set('loaded', true)
-        .set('items', payload)
+    case 'LOAD_STORY_SUCCESS':
+      return state.set(payload.id, payload)
+    case 'CLEAR_STORIES':
+      console.log('!!! CLEAR_STORIES')
+      return state.clear()
   }
   return state
 }

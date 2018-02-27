@@ -5,6 +5,10 @@ import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import './style.css'
 import StoriesList from './StoriesList'
 import StoriesPage from './routes/StoriesPage'
+import ItemPage from './routes/ItemPage'
+import UserPage from './routes/UserPage'
+
+
 
 class App extends Component {
   render() {
@@ -21,6 +25,8 @@ class App extends Component {
         </nav>
         <Switch>
           <Redirect from='/' to='/new/1' exact />
+          <Route path='/item/:id' component={ItemPage} />
+          <Route path='/user/:id' component={UserPage} />
           <Route path='/:type/:page' component={StoriesPage} />
           <Route path='*' render={this.notFound} />
         </Switch>
