@@ -33,7 +33,7 @@ export function loadStories(type, page) {
       .catch(error => {
         dispatch({
           type: 'LOAD_STORIES_ERROR',
-          payload: { error }
+          payload: error
         })
       })
   }

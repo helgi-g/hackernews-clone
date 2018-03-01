@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadStories, clearStories } from '../AC'
+import { loadStories, clearStories } from '../AC/stories'
 import { NavLink } from 'react-router-dom'
 import StoryItem from './StoryItem'
 
 class StoriesList extends Component {
 
   componentWillMount() {
-    console.log('!!! componentWillMount')
+    console.log('!!! ListWillMount')
     this.props.loadStories(this.props.type, this.props.page)
     
   }

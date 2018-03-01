@@ -38,6 +38,8 @@ export default (state = defaultState, action) => {
     case 'CLEAR_STORIES':
       console.log('!!! CLEAR_STORIES')
       return state.clear()
+    case 'LOAD_STORIES_ERROR':
+      console.log(payload)
   }
   return state
 }
