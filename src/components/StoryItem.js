@@ -11,7 +11,7 @@ class StoryItem extends Component {
   render() {
     const { story } = this.props
     return (
-      <li>
+      <div>
         <h3><a href={story.url ? story.url : `/item/${story.id}`}>{story.title}</a></h3>
         <div>
           <span>{story.score} points
@@ -20,7 +20,7 @@ class StoryItem extends Component {
           | <NavLink to={`/item/${story.id}`}>{story.descendants} comments</NavLink>
           </span> 
         </div>
-      </li>
+      </div>
     )
   }
 }

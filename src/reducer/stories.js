@@ -1,11 +1,6 @@
 import { List, Map, Record } from 'immutable'
+import arrToMap from '../utils/arrToMap'
 
-function arrToMap(arr) {
-  return arr.reduce((acc, item) => {
-    console.log('acc = ' + acc)
-    return acc.set(item, '')
-  }, new Map({}))
-}
 /*const StoryRecord = Record({
   id: null,
   deleted: false,	

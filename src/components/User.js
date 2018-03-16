@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadUser, clearUser } from '../AC/user'
 import getTimeAgo from '../utils/getTimeAgo'
+import decodeHtml from '../utils/decodeHtml'
+
 
 
 class User extends Component {
@@ -11,11 +13,6 @@ class User extends Component {
     this.props.loadUser(this.props.id)
   }
   render() {
-    function decodeHtml(html) {
-      var txt = document.createElement("textarea")
-      txt.innerHTML = html
-      return txt.value
-    }
     console.log(this.props.user.about)
     return (
       <div>

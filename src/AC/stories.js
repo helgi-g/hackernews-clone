@@ -7,7 +7,7 @@ export function loadStories(type, page) {
       })
       .then(res => {
         console.log(res)
-        const size = 5
+        const size = 10
         const remainder = (res.length >= page * size) ? size : (res.length % size)
         console.log('remainder=' + remainder)
         const endpoint = remainder == size ? +page * size : ((+page - 1) * size) + remainder

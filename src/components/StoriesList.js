@@ -15,7 +15,7 @@ class StoriesList extends Component {
   render() {
     const { type, page, loading, loaded, items } = this.props
     const list = items.valueSeq().map((item) => {
-      if (item.id) return <StoryItem key={item.id} story={item}/>
+      if (item.id) return <li key={item.id}><StoryItem story={item}/></li>
     })
     const nextPage = +page + 1
     return (
