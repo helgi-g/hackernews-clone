@@ -1,7 +1,7 @@
 import { List, Map, Record } from 'immutable'
 import arrToMap from '../utils/arrToMap'
 
-/*const StoryRecord = Record({
+const StoryRecord = Record({
   id: null,
   deleted: false,	
   type:	null,
@@ -18,22 +18,28 @@ import arrToMap from '../utils/arrToMap'
   parts: null,
   descendants: null
 })
-const StoriesMap = arrToMap([], StoryRecord)*/
-const defaultState = arrToMap([])
+
+const ReducerRecord = Record({
+  entities: arrToMap([], StoryRecord),
+  loading: false,
+  loaded: false
+})
+const defaultState = new ReducerRecord()
 console.log('defaultState = ' + defaultState)
 export default (state = defaultState, action) => {
   const { type, payload } = action
   switch (type) {
-    case 'LOAD_STORY_START':
-      state = arrToMap(payload)  
-      console.log('Start state = ' + state)
+    case 'LOAD_ITEMS_START':
+      return state.set('loading', true)
+    case 'LOAD_ITEMS_SUCCESS': 
       return state
-    case 'LOAD_STORY_SUCCESS':
-      return state.set(payload.id, payload)
-    case 'CLEAR_STORIES':
-      console.log('!!! CLEAR_STORIES')
+        .set('loading', false)
+        .set('loaded', true)
+        .set('entities', arrToMap(payload, StoryRecord))
+    case 'CLEAR_ITEMS':
+      console.log('!!! CLEAR_ITEMS')
       return state.clear()
-    case 'LOAD_STORIES_ERROR':
+    case 'LOAD_ITEMS_ERROR':
       console.log(payload)
   }
   return state

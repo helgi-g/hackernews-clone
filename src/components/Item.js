@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loadItem, clearItem } from '../AC/item'
 import { clearComments } from '../AC/comments'
 
-import StoryItem from './StoryItem'
+import ListItem from './ListItem'
 import decodeHtml from '../utils/decodeHtml'
 import CommentsList from './CommentsList'
 
@@ -17,7 +17,7 @@ class Item extends Component {
     return (
       <div>
         <h1>ItemPage</h1>
-        <StoryItem story={this.props.item} />
+        <ListItem story={this.props.item} />
         {this.props.item.text ? <p>{decodeHtml(this.props.item.text)}</p> : ''}
         {this.props.item.kids ? <CommentsList kids={this.props.item.kids} id={this.props.item.id} />
           : ''}

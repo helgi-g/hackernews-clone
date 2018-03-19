@@ -1,5 +1,8 @@
-export function loadStories(type, page) {
+export function loadItems(type, page) {
   return (dispatch) => {
+    dispatch({
+      type: 'LOAD_ITEMS_START'
+    })
     fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)
       .then(res => {
         if (res.status >= 400) throw new Error(res.statusText)        
@@ -15,24 +18,16 @@ export function loadStories(type, page) {
         console.log('endpoint=' + endpoint)
         const arrID = res.slice((+page - 1) * size, endpoint)
         console.log('arrID = ' + arrID)
-        dispatch({
-          type: 'LOAD_STORY_START',
-          payload: arrID
-        })
-        arrID.forEach(id => {
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-            .then(res => res.json())
-            .then(res => {
-              dispatch({
-                type: 'LOAD_STORY_SUCCESS',
-                payload: res
-              })
-            })
-        })
+        Promise.all(arrID.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+          .then(res => res.json())))
+          .then(values => dispatch({
+            type: 'LOAD_ITEMS_SUCCESS',
+            payload: values
+          }))
       })
       .catch(error => {
         dispatch({
-          type: 'LOAD_STORIES_ERROR',
+          type: 'LOAD_ITEMS_ERROR',
           payload: error
         })
       })
@@ -40,6 +35,6 @@ export function loadStories(type, page) {
 }
 export function clearStories() {
   return {
-    type: 'CLEAR_STORIES'
+    type: 'CLEAR_ITEMS'
   }
 }

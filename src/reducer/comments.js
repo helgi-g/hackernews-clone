@@ -6,11 +6,8 @@ export default (state = defaultState, action) => {
   const { type, payload } = action
   switch (type) {
     case 'LOAD_COMMENTS_START':
-      console.log('Payload = ' + payload)
-      const comments = arrToMap(payload.comments)
-      console.log('Start comments state = ' + state)
-      return state.set(payload.parentId, comments)
-    case 'LOAD_COMMENT_SUCCESS':
+      return state
+    case 'LOAD_COMMENTS_SUCCESS':
       return state.setIn([payload.parentId, payload.comment.id], payload.comment)
     case 'CLEAR_COMMENTS':
       console.log('!!! CLEAR_COMMENTS')
