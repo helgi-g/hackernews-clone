@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadItem, clearItem } from '../AC/item'
-import { clearComments } from '../AC/comments'
-
+import { loadItem, clearItem } from '../AC/itemAC'
+import { clearComments } from '../AC/commentsAC'
 import ListItem from './ListItem'
-import decodeHtml from '../utils/decodeHtml'
 import CommentsList from './CommentsList'
+import NotFaund from './NotFaund'
+import decodeHtml from '../utils/decodeHtml'
+import Loading from './Loading'
 
 class Item extends Component {
   componentWillMount() {
@@ -14,7 +15,8 @@ class Item extends Component {
     this.props.loadItem(this.props.id)
   }
   render() {
-    return (
+    if (this.props.loading) return <Loading />
+    return this.props.item ? 
       <div>
         <h1>ItemPage</h1>
         <ListItem story={this.props.item} />
@@ -22,7 +24,7 @@ class Item extends Component {
         {this.props.item.kids ? <CommentsList kids={this.props.item.kids} id={this.props.item.id} />
           : ''}
       </div>
-    )
+    : <NotFaund/>
   }
   componentWillUnmount() {
     console.log('Item will unmount!!!')
@@ -33,6 +35,7 @@ class Item extends Component {
 
 export default connect((state) => {
   return {
-    item: state.item
+    item: state.item.data,
+    loading: state.item.loading
   }
 }, { loadItem, clearItem, clearComments })(Item)

@@ -13,7 +13,6 @@ class User extends Component {
     this.props.loadUser(this.props.id)
   }
   render() {
-    console.log(this.props.user.about)
     return (
       <div>
         <h1>UserPage</h1>

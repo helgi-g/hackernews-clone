@@ -1,5 +1,8 @@
 export function loadItem(id) {
   return (dispatch) => { 
+    dispatch({
+      type: 'LOAD_ITEM_START'
+    })
     fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
       .then(res => {
         if (res.status >= 400) throw new Error(res.statusText)

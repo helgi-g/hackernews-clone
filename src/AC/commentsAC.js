@@ -2,13 +2,16 @@ export function loadComments(parentId, comments) {
   return (dispatch) => {
     console.log('AC = ' + comments)
     dispatch({
-      type: 'LOAD_COMMENTS_START'
+      type: 'LOAD_COMMENTS_START',
+      payload: {
+        parentId
+      }
     })
-    Promise.all(comments.forEach(id => {
+    Promise.all(comments.map(id => 
       fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
         .then(res => res.json())
-    })).then(res => {
-      console.log(res)
+    )).then(res => {
+      console.log('Comments array' + res)
       dispatch({
         type: 'LOAD_COMMENTS_SUCCESS',
         payload: {

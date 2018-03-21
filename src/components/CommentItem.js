@@ -15,6 +15,7 @@ class CommentItem extends Component {
       <div>
         {this.props.comment.id + decodeHtml(this.props.comment.text)}
         {this.props.comment.kids ? <div>
+          <span>Comments: {this.props.comment.kids.length}</span>
           <button onClick={this.toggleOpen}>*</button>
           {this.state.isOpen ? <CommentList kids={this.props.comment.kids} id={this.props.comment.id} />
           : ''}

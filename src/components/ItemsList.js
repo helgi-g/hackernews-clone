@@ -5,6 +5,7 @@ import { loadItems } from '../AC/itemsListAC'
 import { NavLink, Redirect } from 'react-router-dom'
 import ListItem from './ListItem'
 import NotFaund from './NotFaund'
+import Loading from './Loading'
 
 class StoriesList extends Component {
 
@@ -14,7 +15,7 @@ class StoriesList extends Component {
 
   render() {
     const { loading, loaded, items, page, type} = this.props
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <Loading />
     if (items.size == 0) return <NotFaund />
     const list = items.valueSeq().map((item) => <li key={item.id}><ListItem story={item}/></li>)
     const nextPage = +page + 1

@@ -1,31 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadComments } from '../AC/comments'
+import { loadComments } from '../AC/commentsAC'
 import CommentItem from './CommentItem'
+import Loading from './Loading'
 
 class CommentsList extends Component {
+
   componentWillMount() {
-    console.log('Comments will mount!')
-    console.log('ID =' + this.props.id)
-    this.props.loadComments(this.props.id, this.props.kids)
+    const loaded = this.props.comments.getIn([this.props.id, 'loaded'])
+    console.log('loaded = ' + loaded)
+    if (!loaded) { this.props.loadComments(this.props.id, this.props.kids) }
   }
-  componentWillUpdate(nextProps) {
-    console.log(nextProps.comments.valueSeq())
-  }
+
   render() {
-    console.log('Comments by ID =' + this.props.comments.get(this.props.id))
-    const comments = this.props.comments.get(this.props.id)
+    const comments = this.props.comments.getIn([this.props.id, 'arr'])
+    const loading = this.props.comments.getIn([this.props.id, 'loading'])
     let list
+    if (loading) return <Loading />
     if (comments) {
-      list = comments.valueSeq().map((comment) => {
+      list = comments.map((comment) => {
         if (comment.id) return !comment.deleted ?
           <li key={comment.id}><CommentItem comment={comment} /></li>
           : ''
       })
-    } else {
-      list = <span>List loading...</span>
     }
-     return (
+    return (
       <ul>
         {list}
       </ul>
