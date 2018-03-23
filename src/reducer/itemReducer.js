@@ -1,4 +1,5 @@
 import { Record, OrderedMap } from 'immutable'
+import { LOAD_ITEM_START, LOAD_ITEM_DONE, LOAD_ITEM_ERROR } from '../constants'
 
 const ReducerRecord = Record({
   data: {},
@@ -10,17 +11,15 @@ const defaultState = new ReducerRecord()
 export default (state = defaultState, action) => {
   const { type, payload } = action
   switch (type) {
-    case 'LOAD_ITEM_START':
+    case LOAD_ITEM_START:
       return state.set('loading', true)
-    case 'LOAD_ITEM':
+    case LOAD_ITEM_DONE:
       console.log('Load item' + payload)
       return state
         .set('loading', false)
         .set('data', payload)
-    case 'LOAD_ITEM_ERROR':
-      console.log(payload)
-    case 'CLEAR_ITEM':
-      return state.clear()
+    case LOAD_ITEM_ERROR:
+      console.log('Load item error: ' + payload)
   }
   return state
 }

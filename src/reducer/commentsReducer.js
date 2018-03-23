@@ -1,4 +1,5 @@
 import { Record, OrderedMap } from 'immutable'
+import { LOAD_COMMENTS_START, LOAD_COMMENTS_DONE, LOAD_COMMENTS_ERROR } from '../constants'
 import arrToMap from '../utils/arrToMap'
 
 /*const CommentRecord = Record({
@@ -31,9 +32,9 @@ const defaultState = OrderedMap({})
 export default (state = defaultState, action) => {
   const { type, payload } = action
   switch (type) {
-    case 'LOAD_COMMENTS_START':
+    case LOAD_COMMENTS_START:
       return state.setIn([payload.parentId, 'loading'], true)
-    case 'LOAD_COMMENTS_SUCCESS':
+    case LOAD_COMMENTS_DONE:
       return state
         .setIn([payload.parentId, 'loading'], false)
         .setIn([payload.parentId, 'loaded'], true)
@@ -41,8 +42,8 @@ export default (state = defaultState, action) => {
     case 'CLEAR_COMMENTS':
       console.log('!!! CLEAR_COMMENTS')
       return state.clear()
-    case 'LOAD_COMMENTS_ERROR':
-      console.log(payload)
+    case LOAD_COMMENTS_ERROR:
+      console.log('Load comments error: ' + payload)
   }
   return state
 }

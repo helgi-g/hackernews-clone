@@ -1,4 +1,5 @@
 import { List, Map, Record } from 'immutable'
+import { LOAD_LIST_START, LOAD_LIST_DONE, LOAD_LIST_ERROR } from '../constants'
 import arrToMap from '../utils/arrToMap'
 
 const StoryRecord = Record({
@@ -21,26 +22,24 @@ const StoryRecord = Record({
 
 const ReducerRecord = Record({
   entities: arrToMap([], StoryRecord),
-  loading: false,
-  loaded: false
+  loading: false
 })
 const defaultState = new ReducerRecord()
 console.log('defaultState = ' + defaultState)
 export default (state = defaultState, action) => {
   const { type, payload } = action
   switch (type) {
-    case 'LOAD_ITEMS_START':
+    case LOAD_LIST_START:
       return state.set('loading', true)
-    case 'LOAD_ITEMS_SUCCESS': 
+    case LOAD_LIST_DONE: 
       return state
         .set('loading', false)
-        .set('loaded', true)
         .set('entities', arrToMap(payload, StoryRecord))
     case 'CLEAR_ITEMS':
       console.log('!!! CLEAR_ITEMS')
       return state.clear()
-    case 'LOAD_ITEMS_ERROR':
-      console.log(payload)
+    case LOAD_LIST_ERROR:
+      console.log('Load list error: ' + payload)
   }
   return state
 }

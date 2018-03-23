@@ -1,7 +1,9 @@
+import { LOAD_LIST_START, LOAD_LIST_DONE, LOAD_LIST_ERROR } from '../constants'
+
 export function loadItems(type, page) {
   return (dispatch) => {
     dispatch({
-      type: 'LOAD_ITEMS_START'
+      type: LOAD_LIST_START
     })
     fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)
       .then(res => {
@@ -21,13 +23,13 @@ export function loadItems(type, page) {
         Promise.all(arrID.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
           .then(res => res.json())))
           .then(values => dispatch({
-            type: 'LOAD_ITEMS_SUCCESS',
+            type: LOAD_LIST_DONE,
             payload: values
           }))
       })
       .catch(error => {
         dispatch({
-          type: 'LOAD_ITEMS_ERROR',
+          type: LOAD_LIST_ERROR,
           payload: error
         })
       })

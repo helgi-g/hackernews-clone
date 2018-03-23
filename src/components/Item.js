@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { loadItem, clearItem } from '../AC/itemAC'
 import { clearComments } from '../AC/commentsAC'
-import ListItem from './ListItem'
 import CommentsList from './CommentsList'
 import NotFaund from './NotFaund'
-import decodeHtml from '../utils/decodeHtml'
 import Loading from './Loading'
+import decodeHtml from '../utils/decodeHtml'
+import getTimeAgo from '../utils/getTimeAgo'
+
 
 class Item extends Component {
   componentWillMount() {
@@ -15,21 +17,26 @@ class Item extends Component {
     this.props.loadItem(this.props.id)
   }
   render() {
+    let { url, id, title, score, by, time, descendants, text, kids} = this.props.item
     if (this.props.loading) return <Loading />
     return this.props.item ? 
       <div>
         <h1>ItemPage</h1>
-        <ListItem story={this.props.item} />
-        {this.props.item.text ? <p>{decodeHtml(this.props.item.text)}</p> : ''}
-        {this.props.item.kids ? <CommentsList kids={this.props.item.kids} id={this.props.item.id} />
+        <div>
+          <h3><a href={url ? url : `/item/${id}`}>{title}</a></h3>
+          <div>
+            <span>{score} points
+              | by <NavLink to={`/user/${by}`}>{by}</NavLink>
+              | {getTimeAgo(time)}
+              | <NavLink to={`/item/${id}`}>{descendants} comments</NavLink>
+            </span>
+          </div>
+        </div>
+        {text ? <p>{decodeHtml(text)}</p> : ''}
+        {kids ? <CommentsList kids={kids} id={id} />
           : ''}
       </div>
     : <NotFaund/>
-  }
-  componentWillUnmount() {
-    console.log('Item will unmount!!!')
-    this.props.clearItem()
-    this.props.clearComments()
   }
 }
 

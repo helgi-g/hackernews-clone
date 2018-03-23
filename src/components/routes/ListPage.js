@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ItemsList from '../ItemsList'
+import ItemsList from '../List'
 import NotFaund from '../NotFaund'
 
 

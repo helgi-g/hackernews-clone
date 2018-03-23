@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import './style.css'
-import ItemsListPage from './routes/ItemsListPage'
+import ListPage from './routes/ListPage'
 import ItemPage from './routes/ItemPage'
 import UserPage from './routes/UserPage'
 import NotFaund from './NotFaund'
@@ -24,7 +24,7 @@ function App() {
         <Redirect from='/' to='/new/1' exact />
         <Route path='/item/:id' component={ItemPage} />
         <Route path='/user/:id' component={UserPage} />
-        <Route path='/:type/:page' component={ItemsListPage} />
+        <Route path='/:type/:page' component={ListPage} />
         <Redirect from='/new' to='/new/1' />
         <Redirect from='/top' to='/top/1' />
         <Redirect from='/best' to='/best/1' />

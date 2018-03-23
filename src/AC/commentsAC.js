@@ -1,8 +1,10 @@
+import { LOAD_COMMENTS_START, LOAD_COMMENTS_DONE, LOAD_COMMENTS_ERROR } from '../constants'
+
+
 export function loadComments(parentId, comments) {
   return (dispatch) => {
-    console.log('AC = ' + comments)
     dispatch({
-      type: 'LOAD_COMMENTS_START',
+      type: LOAD_COMMENTS_START,
       payload: {
         parentId
       }
@@ -13,13 +15,19 @@ export function loadComments(parentId, comments) {
     )).then(res => {
       console.log('Comments array' + res)
       dispatch({
-        type: 'LOAD_COMMENTS_SUCCESS',
+        type: LOAD_COMMENTS_DONE,
         payload: {
           parentId: parentId,
           comments: res
         }
       })
     })
+      .catch(error => {
+        dispatch({
+          type: LOAD_COMMENTS_ERROR,
+          payload: error
+        })
+      })
   }
 }
 

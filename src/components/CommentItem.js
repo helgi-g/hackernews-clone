@@ -10,7 +10,6 @@ class CommentItem extends Component {
     isOpen: false
   }
   render() {
-    console.log('Render CommentItem :' + this.props.comment.id)
     return (
       <div>
         {this.props.comment.id + decodeHtml(this.props.comment.text)}
