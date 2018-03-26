@@ -1,4 +1,8 @@
-import { LOAD_USER_START, LOAD_USER_DONE, LOAD_USER_ERROR } from '../constants'
+import {
+  LOAD_USER_START,
+  LOAD_USER_DONE,
+  LOAD_USER_ERROR
+} from '../constants'
 
 export function loadUser(id) {
   return (dispatch) => { 
@@ -11,7 +15,6 @@ export function loadUser(id) {
         return res.json()
       })
       .then(res => {
-        console.log('user:' + res.id)
         dispatch({
           type: LOAD_USER_DONE,
           payload: res
@@ -23,11 +26,5 @@ export function loadUser(id) {
           payload: error
         })
       })
-  }
-}
-
-export function clearUser() {
-  return {
-    type: 'CLEAR_USER'
   }
 }

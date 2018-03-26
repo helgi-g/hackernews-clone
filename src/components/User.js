@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadUser, clearUser } from '../AC/userAC'
 import Loading from './Loading'
+import NotFaund from './NotFaund'
 import getTimeAgo from '../utils/getTimeAgo'
 import decodeHtml from '../utils/decodeHtml'
 
-
-
 class User extends Component {
+
   componentWillMount() {
-    console.log('!!!UserWillLoad')
     this.props.loadUser(this.props.id)
   }
+
   render() {
     if (this.props.loading) return <Loading />
+    if (!this.props.user) return <NotFaund />
     return (
       <div>
         <h1>UserPage</h1>
@@ -25,9 +26,6 @@ class User extends Component {
       </div>
     )
   }
-  componentWillUnmount() {
-    console.log('!!! componentWillUnmount')
-  }
 }
 
 export default connect((state) => {
@@ -35,4 +33,4 @@ export default connect((state) => {
     user: state.user.data,
     loading: state.user.loading
   }
-}, { loadUser, clearUser })(User)
+}, { loadUser })(User)

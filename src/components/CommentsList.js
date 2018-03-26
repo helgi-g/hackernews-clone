@@ -8,12 +8,11 @@ class CommentsList extends Component {
 
   componentWillMount() {
     const loaded = this.props.comments.getIn([this.props.id, 'loaded'])
-    console.log('loaded = ' + loaded)
-    if (!loaded) { this.props.loadComments(this.props.id, this.props.kids) }
+    if (!loaded) this.props.loadComments(this.props.id, this.props.kids)
   }
 
   render() {
-    const comments = this.props.comments.getIn([this.props.id, 'arr'])
+    const comments = this.props.comments.getIn([this.props.id, 'data'])
     const loading = this.props.comments.getIn([this.props.id, 'loading'])
     let list
     if (loading) return <Loading />

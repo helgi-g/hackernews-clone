@@ -1,4 +1,8 @@
-import { LOAD_LIST_START, LOAD_LIST_DONE, LOAD_LIST_ERROR } from '../constants'
+import {
+  LOAD_LIST_START,
+  LOAD_LIST_DONE,
+  LOAD_LIST_ERROR
+} from '../constants'
 
 export function loadItems(type, page) {
   return (dispatch) => {
@@ -11,15 +15,10 @@ export function loadItems(type, page) {
         return res.json()
       })
       .then(res => {
-        console.log(res)
         const size = 10
         const remainder = (res.length >= page * size) ? size : (res.length % size)
-        console.log('remainder=' + remainder)
         const endpoint = remainder == size ? +page * size : ((+page - 1) * size) + remainder
-        console.log('start=' + ((+page - 1) * size))
-        console.log('endpoint=' + endpoint)
         const arrID = res.slice((+page - 1) * size, endpoint)
-        console.log('arrID = ' + arrID)
         Promise.all(arrID.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
           .then(res => res.json())))
           .then(values => dispatch({
@@ -33,10 +32,5 @@ export function loadItems(type, page) {
           payload: error
         })
       })
-  }
-}
-export function clearStories() {
-  return {
-    type: 'CLEAR_ITEMS'
   }
 }

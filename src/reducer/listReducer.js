@@ -1,31 +1,17 @@
-import { List, Map, Record } from 'immutable'
-import { LOAD_LIST_START, LOAD_LIST_DONE, LOAD_LIST_ERROR } from '../constants'
-import arrToMap from '../utils/arrToMap'
-
-const StoryRecord = Record({
-  id: null,
-  deleted: false,	
-  type:	null,
-  by: null,
-  time: null,
-  text: null,
-  dead:	false,
-  parent: null,
-  poll: null,
-  kids:	[],
-  url: null,
-  score: null,
-  title: null,
-  parts: null,
-  descendants: null
-})
+import { Record } from 'immutable'
+import {
+  LOAD_LIST_START,
+  LOAD_LIST_DONE,
+  LOAD_LIST_ERROR
+} from '../constants'
 
 const ReducerRecord = Record({
-  entities: arrToMap([], StoryRecord),
+  data: [],
   loading: false
 })
+
 const defaultState = new ReducerRecord()
-console.log('defaultState = ' + defaultState)
+
 export default (state = defaultState, action) => {
   const { type, payload } = action
   switch (type) {
@@ -34,10 +20,7 @@ export default (state = defaultState, action) => {
     case LOAD_LIST_DONE: 
       return state
         .set('loading', false)
-        .set('entities', arrToMap(payload, StoryRecord))
-    case 'CLEAR_ITEMS':
-      console.log('!!! CLEAR_ITEMS')
-      return state.clear()
+        .set('data', payload)
     case LOAD_LIST_ERROR:
       console.log('Load list error: ' + payload)
   }

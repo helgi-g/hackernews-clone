@@ -1,4 +1,8 @@
-import { LOAD_ITEM_START, LOAD_ITEM_DONE, LOAD_ITEM_ERROR } from '../constants'
+import {
+  LOAD_ITEM_START,
+  LOAD_ITEM_DONE,
+  LOAD_ITEM_ERROR
+} from '../constants'
 
 export function loadItem(id) {
   return (dispatch) => { 
@@ -11,7 +15,6 @@ export function loadItem(id) {
         return res.json()
       })
       .then(res => {
-        console.log('Load item action')
         dispatch({
           type: LOAD_ITEM_DONE,
           payload: res
@@ -23,11 +26,5 @@ export function loadItem(id) {
           payload: error
         })
       })
-  }
-}
-
-export function clearItem() {
-  return {
-    type: 'CLEAR_ITEM'
   }
 }

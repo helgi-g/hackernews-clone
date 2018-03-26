@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import './style.css'
 import ListPage from './routes/ListPage'
@@ -8,7 +6,7 @@ import ItemPage from './routes/ItemPage'
 import UserPage from './routes/UserPage'
 import NotFaund from './NotFaund'
 
-function App() {
+export default function App() {
   return (
     <div>
       <nav>
@@ -36,5 +34,3 @@ function App() {
     </div>  
   )
 }
-
-export default App

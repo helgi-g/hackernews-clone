@@ -1,5 +1,9 @@
-import { LOAD_USER_START, LOAD_USER_DONE, LOAD_USER_ERROR } from '../constants'
 import { Record } from 'immutable'
+import {
+  LOAD_USER_START,
+  LOAD_USER_DONE,
+  LOAD_USER_ERROR
+} from '../constants'
 
 const ReducerRecord = Record({
   data: {},

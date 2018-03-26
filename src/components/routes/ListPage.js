@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import ItemsList from '../List'
 import NotFaund from '../NotFaund'
 
-
-function ItemsListPage({ match }) {
+export default function ItemsListPage({ match }) {
   const { type, page } = match.params
   const typesOfLists = [
     'new',
@@ -18,5 +17,3 @@ function ItemsListPage({ match }) {
     <ItemsList type={type} page={page} key={type + page} />
     : <NotFaund />
 }
-
-export default ItemsListPage

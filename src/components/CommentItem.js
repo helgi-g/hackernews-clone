@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import decodeHtml from '../utils/decodeHtml'
 import CommentList from './CommentsList'
 
-
-
 class CommentItem extends Component {
   state = {
     isOpen: false
   }
+
   render() {
     return (
       <div>
@@ -22,6 +21,7 @@ class CommentItem extends Component {
       </div>
     )
   }
+  
   toggleOpen = () => this.setState({
     isOpen: !this.state.isOpen
   })

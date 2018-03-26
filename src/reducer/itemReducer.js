@@ -1,5 +1,9 @@
-import { Record, OrderedMap } from 'immutable'
-import { LOAD_ITEM_START, LOAD_ITEM_DONE, LOAD_ITEM_ERROR } from '../constants'
+import { Record } from 'immutable'
+import {
+  LOAD_ITEM_START,
+  LOAD_ITEM_DONE,
+  LOAD_ITEM_ERROR
+} from '../constants'
 
 const ReducerRecord = Record({
   data: {},
@@ -14,7 +18,6 @@ export default (state = defaultState, action) => {
     case LOAD_ITEM_START:
       return state.set('loading', true)
     case LOAD_ITEM_DONE:
-      console.log('Load item' + payload)
       return state
         .set('loading', false)
         .set('data', payload)

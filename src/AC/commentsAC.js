@@ -1,5 +1,9 @@
-import { LOAD_COMMENTS_START, LOAD_COMMENTS_DONE, LOAD_COMMENTS_ERROR } from '../constants'
-
+import {
+  LOAD_COMMENTS_START,
+  LOAD_COMMENTS_DONE,
+  LOAD_COMMENTS_ERROR,
+  CLEAR_COMMENTS
+} from '../constants'
 
 export function loadComments(parentId, comments) {
   return (dispatch) => {
@@ -11,9 +15,11 @@ export function loadComments(parentId, comments) {
     })
     Promise.all(comments.map(id => 
       fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-        .then(res => res.json())
+        .then(res => {
+          if (res.status >= 400) throw new Error(res.statusText)
+          return res.json()
+        })
     )).then(res => {
-      console.log('Comments array' + res)
       dispatch({
         type: LOAD_COMMENTS_DONE,
         payload: {
@@ -33,6 +39,6 @@ export function loadComments(parentId, comments) {
 
 export function clearComments() {
   return {
-    type: 'CLEAR_COMMENTS'
+    type: CLEAR_COMMENTS
   }
 }
