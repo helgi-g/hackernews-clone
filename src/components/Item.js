@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { loadItem } from '../AC/itemAC'
 import { clearComments } from '../AC/commentsAC'
+import Content from './Content'
 import CommentsList from './CommentsList'
 import NotFaund from './NotFaund'
 import Loading from './Loading'
-import decodeHtml from '../utils/decodeHtml'
 import getTimeAgo from '../utils/getTimeAgo'
+import getDomain from '../utils/getDomain'
+
 
 class Item extends Component {
 
@@ -25,6 +27,7 @@ class Item extends Component {
         <h1>ItemPage</h1>
         <div>
           <h3><a href={url ? url : `/item/${id}`}>{title}</a></h3>
+          {url ? <a href={url}>({getDomain(url)})</a> : ''}
           <div>
             <span>{score} points
               | by <NavLink to={`/user/${by}`}>{by}</NavLink>
@@ -33,7 +36,7 @@ class Item extends Component {
             </span>
           </div>
         </div>
-        {text ? <p>{decodeHtml(text)}</p> : ''}
+        {text ? <Content html={text}/> : ''}
         {kids ? <CommentsList kids={kids} id={id} />
           : ''}
       </div>

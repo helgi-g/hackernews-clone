@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 import NotFaund from './NotFaund'
 import Loading from './Loading'
 import getTimeAgo from '../utils/getTimeAgo'
+import getDomain from '../utils/getDomain'
 
 class List extends Component {
 
@@ -19,11 +20,11 @@ class List extends Component {
     if (items.length == 0) return <NotFaund />
     return (
       <div>
-        <h1>{type}:{page}</h1>
         <ul>
           {items.map((item) => <li key={item.id}>
             <div>
               <h3><a href={item.url ? item.url : `/item/${item.id}`}>{item.title}</a></h3>
+              {item.url ? <a href={item.url}>({getDomain(item.url)})</a> : ''}
               <div>
                 <span>{item.score} points
                   | by <NavLink to={`/user/${item.by}`}>{item.by}</NavLink>

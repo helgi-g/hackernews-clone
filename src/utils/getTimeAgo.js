@@ -12,7 +12,7 @@ export default (time) => {
     return "a few hours ago";
   }
   if (seconds > 1800) {
-    return "Half an hour ago";
+    return "half an hour ago";
   }
   if (seconds > 60) {
     return Math.floor(seconds / 60) + " minutes ago";

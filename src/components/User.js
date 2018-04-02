@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { loadUser, clearUser } from '../AC/userAC'
 import Loading from './Loading'
 import NotFaund from './NotFaund'
+import Content from './Content'
 import getTimeAgo from '../utils/getTimeAgo'
-import decodeHtml from '../utils/decodeHtml'
 
 class User extends Component {
 
@@ -16,13 +16,14 @@ class User extends Component {
   render() {
     if (this.props.loading) return <Loading />
     if (!this.props.user) return <NotFaund />
+    let { id, created, karma, about } = this.props.user
     return (
       <div>
         <h1>UserPage</h1>
-        <p>user: {this.props.user.id}</p>
-        <p>created: {getTimeAgo(this.props.user.created)}</p>
-        <p>karma: {this.props.user.karma}</p>
-        {this.props.user.about ? <p>about: {decodeHtml(this.props.user.about)}</p> : ''}
+        <p>user: {id}</p>
+        <p>created: {getTimeAgo(created)}</p>
+        <p>karma: {karma}</p>
+        {about ? <div><span>about: </span> <Content html={about} /></div> : ''}
       </div>
     )
   }
