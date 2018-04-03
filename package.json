@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-template",
+  "name": "hackernews-clone",
   "version": "1.0.1",
   "main": "index.js",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/helgi-g/react-redux-template"
+    "url": "https://github.com/helgi-g/hackernews-clone"
   },
   "author": {
     "name": "Oleg Gulitsky",
     "email": "oleg.gulitsky@gmail.com"
   },
   "license": "ISC",
-  "homepage": "https://github.com/helgi-g/react-redux-template",
+  "homepage": "https://github.com/helgi-g/hackernews-clone",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -44,5 +44,5 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
   },
-  "description": "Template for developing React/Redux application."
+  "description": "A Hacker News clone built with React and Redux."
 }
