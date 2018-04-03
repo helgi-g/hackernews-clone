@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import CommentList from './CommentsList'
 import Content from './Content'
+import getTimeAgo from '../utils/getTimeAgo'
+
 
 class CommentItem extends Component {
   state = {
@@ -9,16 +12,18 @@ class CommentItem extends Component {
   }
 
   render() {
-    let { text, kids, id } = this.props.comment
+    let { text, kids, id, by, time } = this.props.comment
     return (
-      <div>
+      <div className='commentItem'>
         <Content html={text}/>
-        {kids ? <div>
-          <span>Comments: {kids.length}</span>
-          <button onClick={this.toggleOpen}>*</button>
-          {this.state.isOpen ? <CommentList kids={kids} id={id} />
-          : ''}
-        </div> : ''}
+        <div className='contentInfo'>
+          <span>by <NavLink to={`/user/${by}`}>{by}</NavLink> </span>
+          <span>| {getTimeAgo(time)} </span>
+          {kids ? <span>| comments: {kids.length} <button onClick={this.toggleOpen}>
+            {this.state.isOpen ? '[-]' : '[+]'}</button></span>
+            : ''}
+          {this.state.isOpen ? <CommentList kids={kids} id={id} /> : ''}
+        </div>
       </div>
     )
   }

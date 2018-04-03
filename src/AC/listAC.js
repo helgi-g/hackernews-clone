@@ -15,7 +15,7 @@ export function loadItems(type, page) {
         return res.json()
       })
       .then(res => {
-        const size = 10
+        const size = 20
         const remainder = (res.length >= page * size) ? size : (res.length % size)
         const endpoint = remainder == size ? +page * size : ((+page - 1) * size) + remainder
         const arrID = res.slice((+page - 1) * size, endpoint)

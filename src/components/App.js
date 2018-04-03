@@ -10,13 +10,12 @@ export default function App() {
   return (
     <div>
       <nav>
-        <NavLink to='/new/1' activeStyle={{ color: 'red' }}>New</NavLink>
-        <NavLink to='/top/1' activeStyle={{ color: 'red' }}>Top</NavLink>
-        <NavLink to='/best/1' activeStyle={{ color: 'red' }}>Best</NavLink>
-        <NavLink to='/ask/1' activeStyle={{ color: 'red' }}>Ask</NavLink>
-        <NavLink to='/show/1' activeStyle={{ color: 'red' }}>Show</NavLink>
-        <NavLink to='/job/1' activeStyle={{ color: 'red' }}>Job</NavLink>
-        <NavLink to='/err' activeStyle = {{color: 'red'}}>Err</NavLink>
+        <NavLink to='/new/1' className='navLink' activeStyle={{ color: '#e85a4f' }}>New</NavLink>
+        <NavLink to='/top/1' className='navLink' activeStyle={{ color: '#e85a4f' }}>Top</NavLink>
+        <NavLink to='/best/1' className='navLink' activeStyle={{ color: '#e85a4f' }}>Best</NavLink>
+        <NavLink to='/ask/1' className='navLink' activeStyle={{ color: '#e85a4f' }}>Ask</NavLink>
+        <NavLink to='/show/1' className='navLink' activeStyle={{ color: '#e85a4f' }}>Show</NavLink>
+        <NavLink to='/job/1' className='navLink' activeStyle={{ color: '#e85a4f' }}>Job</NavLink>
       </nav>
       <Switch>
         <Redirect from='/' to='/new/1' exact />

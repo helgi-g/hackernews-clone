@@ -24,13 +24,12 @@ class List extends Component {
           {items.map((item) => <li key={item.id}>
             <div>
               <h3><a href={item.url ? item.url : `/item/${item.id}`}>{item.title}</a></h3>
-              {item.url ? <a href={item.url}>({getDomain(item.url)})</a> : ''}
               <div>
-                <span>{item.score} points
-                  | by <NavLink to={`/user/${item.by}`}>{item.by}</NavLink>
-                  | {getTimeAgo(item.time)}
-                  | <NavLink to={`/item/${item.id}`}>{item.descendants} comments</NavLink>
-                </span>
+                <span>{item.score} points </span>
+                <span>| by <NavLink to={`/user/${item.by}`}>{item.by} </NavLink></span>
+                <span>| {getTimeAgo(item.time)} </span>
+                <span>| <NavLink to={`/item/${item.id}`}>{item.descendants} comments </NavLink></span>
+                {item.url ? <span>| <a href={item.url}>{getDomain(item.url)}</a> </span> : ''}
               </div>
             </div>
           </li>)}

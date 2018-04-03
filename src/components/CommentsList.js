@@ -24,7 +24,7 @@ class CommentsList extends Component {
       })
     }
     return (
-      <ul>
+      <ul className='commentsList'>
         {list}
       </ul>
     )

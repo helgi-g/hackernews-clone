@@ -30,5 +30,67 @@
 	      transform: rotate(540deg);
 	   }
   }
-  
-  
+	
+body {
+	max-width: 600px;
+	background: #eae7dc;
+	color: #8e8d8a;
+	margin: 0;
+	padding: 5px 0 20px 20px
+}
+
+a {
+	color: #e85a4f;
+	text-decoration: none;
+}
+
+h3 {
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+
+span {
+	font-size: 14px;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style-type: none
+}
+
+pre {
+	overflow-x: auto;
+}
+
+button {
+	border: none;
+	padding: 0;
+	background: none;
+	cursor: pointer;
+	color: #8e8d8a;
+}
+
+button:focus {
+	outline: 0;
+}
+
+.navLink {
+	margin-right: 5px;
+	color: #8e8d8a
+}
+
+.commentsList {
+	border-left: 1px solid #8e8d8a;
+	padding: 0 0 0 20px;
+}
+
+.commentItem {
+	margin: 10px 0 10px 0;
+}
+
+.contentInfo {
+	margin: 3px 0 0 0;
+}

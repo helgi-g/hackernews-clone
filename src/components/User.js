@@ -19,7 +19,6 @@ class User extends Component {
     let { id, created, karma, about } = this.props.user
     return (
       <div>
-        <h1>UserPage</h1>
         <p>user: {id}</p>
         <p>created: {getTimeAgo(created)}</p>
         <p>karma: {karma}</p>
