@@ -7,7 +7,8 @@ import {
 
 const ReducerRecord = Record({
   data: [],
-  loading: false
+  loading: false,
+  more: false
 })
 
 const defaultState = new ReducerRecord()
@@ -20,7 +21,8 @@ export default (state = defaultState, action) => {
     case LOAD_LIST_DONE: 
       return state
         .set('loading', false)
-        .set('data', payload)
+        .set('data', payload.values)
+        .set('more', payload.more)
     case LOAD_LIST_ERROR:
       console.log('Load list error: ' + payload)
   }

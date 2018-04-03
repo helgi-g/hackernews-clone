@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ItemsList from '../List'
-import NotFaund from '../NotFaund'
+import NotFound from '../NotFound'
 
 export default function ItemsListPage({ match }) {
   const { type, page } = match.params
@@ -15,5 +15,5 @@ export default function ItemsListPage({ match }) {
   ]
   return typesOfLists.indexOf(type) > -1 ?
     <ItemsList type={type} page={page} key={type + page} />
-    : <NotFaund />
+    : <NotFound />
 }

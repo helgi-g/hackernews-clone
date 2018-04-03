@@ -6,7 +6,7 @@ import { loadItem } from '../AC/itemAC'
 import { clearComments } from '../AC/commentsAC'
 import Content from './Content'
 import CommentsList from './CommentsList'
-import NotFaund from './NotFaund'
+import NotFound from './NotFound'
 import Loading from './Loading'
 import getTimeAgo from '../utils/getTimeAgo'
 import getDomain from '../utils/getDomain'
@@ -20,7 +20,7 @@ class Item extends Component {
 
   render() {
     if (this.props.loading) return <Loading />
-    if (!this.props.item) return <NotFaund />
+    if (!this.props.item) return <NotFound />
     let { url, id, title, score, by, time, descendants, text, kids } = this.props.item
     return (
       <div>

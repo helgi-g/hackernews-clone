@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadItems } from '../AC/listAC'
 import { NavLink } from 'react-router-dom'
-import NotFaund from './NotFaund'
+import NotFound from './NotFound'
 import Loading from './Loading'
 import getTimeAgo from '../utils/getTimeAgo'
 import getDomain from '../utils/getDomain'
@@ -15,9 +15,9 @@ class List extends Component {
   }
 
   render() {
-    const { loading, loaded, items, page, type } = this.props
+    const { loading, loaded, items, page, type, more } = this.props
     if (loading) return <Loading />
-    if (items.length == 0) return <NotFaund />
+    if (items.length == 0) return <NotFound />
     return (
       <div>
         <ul>
@@ -34,7 +34,7 @@ class List extends Component {
             </div>
           </li>)}
         </ul>
-        <NavLink to={`/${type}/${+page + 1}`}>More</NavLink>
+        {more ? <NavLink to={`/${type}/${+page + 1}`}>More</NavLink> : ''}
       </div>
     )
   }
@@ -43,6 +43,7 @@ class List extends Component {
 export default connect((state) => {
   return {
     items: state.list.data,
-    loading: state.list.loading
+    loading: state.list.loading,
+    more: state.list.more
   }
 }, { loadItems })(List)

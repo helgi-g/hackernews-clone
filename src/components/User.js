@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadUser, clearUser } from '../AC/userAC'
 import Loading from './Loading'
-import NotFaund from './NotFaund'
+import NotFound from './NotFound'
 import Content from './Content'
 import getTimeAgo from '../utils/getTimeAgo'
 
@@ -15,7 +15,7 @@ class User extends Component {
 
   render() {
     if (this.props.loading) return <Loading />
-    if (!this.props.user) return <NotFaund />
+    if (!this.props.user) return <NotFound />
     let { id, created, karma, about } = this.props.user
     return (
       <div>

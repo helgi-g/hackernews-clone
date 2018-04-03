@@ -19,11 +19,15 @@ export function loadItems(type, page) {
         const remainder = (res.length >= page * size) ? size : (res.length % size)
         const endpoint = remainder == size ? +page * size : ((+page - 1) * size) + remainder
         const arrID = res.slice((+page - 1) * size, endpoint)
+        const more = res.length - endpoint > 0 ? true : false
         Promise.all(arrID.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
           .then(res => res.json())))
           .then(values => dispatch({
             type: LOAD_LIST_DONE,
-            payload: values
+            payload: {
+              values,
+              more
+            }
           }))
       })
       .catch(error => {

@@ -4,7 +4,7 @@ import './style.css'
 import ListPage from './routes/ListPage'
 import ItemPage from './routes/ItemPage'
 import UserPage from './routes/UserPage'
-import NotFaund from './NotFaund'
+import NotFound from './NotFound'
 
 export default function App() {
   return (
@@ -28,7 +28,7 @@ export default function App() {
         <Redirect from='/ask' to='/ask/1' />
         <Redirect from='/show' to='/show/1' />
         <Redirect from='/job' to='/job/1' />
-        <Route path='*' component={NotFaund} />
+        <Route path='*' component={NotFound} />
       </Switch>
     </div>  
   )
